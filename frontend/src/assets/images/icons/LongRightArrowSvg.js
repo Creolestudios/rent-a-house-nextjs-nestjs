@@ -1,0 +1,23 @@
+import React from "react";
+
+const LongRightArrowSvg = () => {
+  return (
+    <>
+      <svg
+        width="19"
+        height="10"
+        viewBox="0 0 19 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.9666 9.00003L17 5.00003M12.9666 1.00003L17 5.00003M17 5.00003H0"
+          stroke="white"
+          strokeWidth="2"
+        />
+      </svg>
+    </>
+  );
+};
+
+export default LongRightArrowSvg;

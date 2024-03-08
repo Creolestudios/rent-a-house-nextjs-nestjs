@@ -1,0 +1,25 @@
+import React from "react";
+
+const crossSvg = () => {
+  return (
+    <>
+      <svg
+        width="13"
+        height="12"
+        viewBox="0 0 13 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.0502 1.05033L1.15072 10.9498M1.15072 1.05033L11.0502 10.9498"
+          stroke="#C9C9C9"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </>
+  );
+};
+
+export default crossSvg;

@@ -1,0 +1,1095 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type StateEntity {
+  id: Float!
+  name: String!
+  country_id: Float!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type StateList {
+  id: Int!
+  name: String!
+}
+
+type CountryEntity {
+  id: Float!
+  name: String!
+  code: String!
+  status: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type CountryList {
+  id: Int!
+  name: String!
+}
+
+type CmsEntity {
+  id: Int!
+  identifier: String!
+  page_name: String!
+  meta_title: String!
+  meta_description: String!
+  language_id: Int!
+  content: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type SpokenLanguagesEntity {
+  id: Float!
+  name: String!
+  language_code: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime!
+}
+
+type CityEntity {
+  id: Int!
+  name: String!
+  state_id: Float!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type CityList {
+  id: Int!
+  name: String!
+}
+
+type MediaEntity {
+  id: Int!
+  name: String!
+  type: Int!
+  property_id: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type AdditionalRequiredCostEntity {
+  id: Int!
+  property_id: Int!
+  name: String!
+  amount: Float!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type SpaceOverviewEntity {
+  id: Int!
+  bedrooms: Int!
+  peoples: Int!
+  size: Int!
+  property_id: Int!
+  details: String!
+  is_furnished: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type PropertyEntity {
+  id: Float!
+  min_rental_period: Float!
+  max_rental_period: Float!
+  type: String!
+  name: String!
+  currency: String!
+  latitude: Float!
+  longitude: Float!
+  postal_code: String!
+  house_no: String!
+  rent: Float!
+  is_mobile_verified: Int!
+  status: Int!
+  country_id: Int!
+  state_id: Int!
+  city_id: Int!
+  available_from: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+  user_id: Int!
+  media: [MediaEntity!]
+  is_favorite: Int
+  images: [MediaEntity!]
+  thumbnail: String!
+  total_favorites: Int
+  first_month_rent: String
+  space: SpaceOverviewEntity
+  one_time_service_fee: String
+  landlord: UserEntity!
+  host_details: UserEntity!
+  city_details: CityEntity!
+  state_details: StateEntity!
+  country_details: CountryEntity!
+  space_overview: SpaceOverviewEntity!
+  amenity: [PropertyAmenityEntity!]!
+  facility: [PropertyAmenityEntity!]!
+  rental_condition: RentalConditionEntity!
+  additional_required_cost: [AdditionalRequiredCostEntity!]!
+  rules_and_preference: RuleOrPreferenceEntity!
+  tenant_counts: Int!
+}
+
+type CreatePropertyResponse {
+  message: String!
+  property_id: Int!
+}
+
+type PropertyPaginationResponse {
+  properties: [PropertyEntity!]!
+  total_properties: Int
+}
+
+type FieldWiseCount {
+  type: [CountArray!]
+  size: [CountArray!]
+  furniture: [CountArray!]
+  suitable_for: [CountArray!]
+  amenities: [CountArray!]
+  facilities: [CountArray!]
+}
+
+type PropertyFilterResponse {
+  properties: [PropertyEntity!]!
+  field_wise_count: FieldWiseCount
+  total_properties: Int!
+}
+
+type CountArray {
+  name: String!
+  total: Int
+}
+
+type BookingEntity {
+  id: Int!
+  tenant_id: Float!
+  property_id: Float!
+  propertys_id: PropertyEntity
+  landlord_id: Float!
+  status: Int!
+  start_date: DateTime
+  end_date: DateTime
+  amount: Float!
+  is_special_amount: Float
+  reason_for_rejection: String
+  currency: String
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+  month_difference: Float
+  service_cost: String
+  tenant: UserEntity
+  property: PropertyEntity
+  landlord: UserEntity
+}
+
+type TenantResponse {
+  data: BookingEntity!
+  message: String!
+}
+
+type BookingPaginationResponse {
+  booking: [BookingEntity!]!
+  total_booking: Int!
+}
+
+type UserEntity {
+  id: Int
+  image: String
+  first_name: String
+  last_name: String
+  address: String
+  country_id: Float
+  state_id: Float
+  city_id: Float
+  gender: Int
+  dob: String
+  occupation: String
+  identity_proof: String
+  proof_of_occupation_income: String
+  email: String
+  dialer_code: Int
+  mobile: Float
+  password: String
+  is_mobile_verified: Int
+  is_email_verified: Int
+  verification_token: String
+  verification_token_exp: DateTime
+  reset_password_token: String
+  reset_password_token_exp: DateTime
+  social_type: Int
+  social_token: String
+  token: String
+  notification_is_enable: Int
+  pincode: String
+  notification_language: Int
+  login_at: DateTime
+  is_landlord: Int
+  created_at: DateTime
+  updated_at: DateTime
+  deleted_at: DateTime
+  user_type: Float
+  TotalProperties: Int
+  listedProperties: [ListedProperty!]
+}
+
+type ListedProperty {
+  name: String!
+  id: Int!
+}
+
+type UserDocumentsVerifyResponse {
+  user_details: Boolean!
+  null_fields: UserEntity
+}
+
+type AdminEntity {
+  id: Int!
+  user_name: String!
+  email: String!
+  password: String!
+  role: Int!
+  status: Int!
+  token: String
+  reset_password_token: String
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type AdminPaginationResponse {
+  admins: [AdminEntity!]!
+  total_admins: Int!
+}
+
+type SiteConfigEntity {
+  id: Float!
+  message: String!
+  name: String!
+  logo: String!
+  address: String!
+  email: String!
+  contact: Float!
+  status: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type SiteConfigResponse {
+  data: [SiteConfigEntity!]!
+  message: String!
+}
+
+type SiteConfigResponseSingle {
+  data: SiteConfigEntity!
+  message: String!
+}
+
+type AmenityEntity {
+  id: Int!
+  name: String!
+  status: Int!
+  type: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type AmenitiesListingResponse {
+  amenities: [AmenitiesListingResponseType!]!
+  facilities: [AmenitiesListingResponseType!]!
+}
+
+type AmenitiesListingResponseType {
+  id: Int!
+  name: String!
+  availability: Int!
+}
+
+type PropertyAmenityEntity {
+  id: Float!
+  amenities_id: AmenityEntity!
+  property_id: Int!
+  availability: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type RentalConditionEntity {
+  id: Int!
+  contract_type: Int!
+  property_id: Int!
+  cancellation_policy_id: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+  additional_required_cost: [AdditionalRequiredCostEntity!]
+}
+
+type RuleOrPreferenceEntity {
+  id: Int!
+  document: Int!
+  gender: Int!
+  tenant: Int!
+  pets: Int!
+  property_id: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type MessageEntity {
+  id: Int!
+  booking_id: Float!
+  to_id: Float!
+  from_id: Float!
+  status: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+  tenant: UserEntity!
+  booking: BookingEntity!
+  landlord: UserEntity!
+}
+
+type ChildMessageEntity {
+  id: Int!
+  message_id: Float!
+  to_id: Float!
+  from_id: Float!
+  text: String!
+  file: String
+  status: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+  message_ids: MessageEntity!
+  from_ids: UserEntity!
+  to_ids: UserEntity!
+}
+
+type ChildMessageResponse {
+  data: [ChildMessageEntity!]!
+  booking_data: BookingEntity!
+  tenant_data: UserEntity
+  landlord_data: UserEntity
+  property_data: PropertyEntity
+  message: String!
+}
+
+type PropertyVerificationResponse {
+  mobile_number: String!
+  property_id: Int!
+}
+
+type GoogleOauthLoginResponse {
+  id: Int
+  first_name: String
+  last_name: String
+  email: String
+  image: String
+  social_type: Int
+  token: String
+}
+
+type MonthCount {
+  month: String!
+  monthCount: Float!
+}
+
+type AdminDashboardData {
+  monthWiseUser: [MonthCount!]!
+  otherData: [AdminDashboardDataType!]!
+  avalibleYears: [Int!]!
+  totalUserYear: Int!
+}
+
+type AdminDashboardDataType {
+  name: String!
+  value: Int!
+}
+
+type MangeUserResponse {
+  users: [UserEntity!]!
+  total_users: Int!
+}
+
+type LiveChatResponse {
+  text: String!
+  file: String
+  to_id: Float!
+  tenant_name: String!
+  from_id: Float!
+  landlord_name: String!
+  tenant_image: String!
+  landlord_image: String!
+  created_at: DateTime
+}
+
+type MessagePayload {
+  message: String!
+  bookingId: Int!
+  from: Int!
+  landlord_name: String!
+  to: Int!
+  tenant_name: String!
+  tenant_image: String!
+  landlord_image: String!
+  messageFile: String
+  created_at: DateTime
+}
+
+type Dates {
+  start_date: String!
+  end_date: String!
+}
+
+type Property {
+  id: Float
+  name: String
+  user_id: Float
+}
+
+type City {
+  city_id: Int
+  city_name: String
+}
+
+type LastMessage {
+  id: Float!
+  message_id: Float!
+  to_id: Float!
+  from_id: Float!
+  text: String!
+  file: String
+  status: Float!
+  created_at: DateTime!
+}
+
+type UserMessage {
+  userMessages: LastMessage!
+}
+
+type LandlordData {
+  id: Float
+  first_name: String
+  last_name: String
+  image: String
+}
+
+type TenantData {
+  id: Float
+  first_name: String
+  last_name: String
+  image: String
+}
+
+type MessageWithLandlordData {
+  id: Float!
+  booking_id: Float!
+  to_id: Float!
+  from_id: Float!
+  status: Float!
+  created_at: DateTime!
+  updated_at: DateTime!
+  landlordData: LandlordData
+  tenantData: TenantData
+  dates: Dates
+  property: Property
+  city: City
+  userMessages: UserMessage
+}
+
+type MessageResponse {
+  data: [MessageWithLandlordData!]!
+  message: String!
+}
+
+type BookingResponses {
+  data: BookingEntity!
+  message: String!
+}
+
+type ContinueChatting {
+  User: UserEntity!
+  Bookings: BookingEntity!
+  PropertyDetail: PropertyEntity!
+  LandloardDetail: UserEntity!
+  GetMessageData: MessageEntity!
+  Message: [ChildMessageEntity!]!
+}
+
+type MangeUserPropertyResponse {
+  properties: [PropertyEntity!]!
+  total_properties: Int!
+}
+
+type FindAllCMSResponse {
+  page: [CmsEntity!]!
+}
+
+type UserRegisterResponse {
+  id: Float!
+  token: String!
+  message: String!
+}
+
+type LanguageCreatedResponse {
+  message: String!
+  avalible_pages: [String!]!
+}
+
+type CMSCreatedResponse {
+  message: String!
+}
+
+type MangeReservation {
+  reservations: [BookingEntity!]
+  totalReservations: Int!
+}
+
+type Reservation {
+  reservations: BookingEntity!
+  ServiceFee: Int!
+  TotalAmountPaid: Int!
+  messages: [ChildMessageEntity!]!
+}
+
+type ContactUsEntity {
+  id: Float!
+  name: String!
+  email: String
+  mobile: String
+  message: String
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type CommissionFeesEntity {
+  id: Float!
+  type: Float!
+  value: Float!
+  currency: String!
+  status: Int!
+  commission_from: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+  deleted_at: DateTime
+}
+
+type CommissionFeesResponseSingle {
+  data: CommissionFeesEntity!
+  message: String!
+}
+
+type Query {
+  getHello: String!
+  authUrl: String!
+  admins: [AdminEntity!]!
+  admin(id: Int!): AdminEntity!
+  MangeUser(name: String!, page: Int!, pagesize: Int!): MangeUserResponse!
+  FindOneUser(id: Int!): UserEntity!
+  searchAdmins(page_size: Int!, page_number: Int!, admin_name: String): AdminPaginationResponse!
+  contactUs: [ContactUsEntity!]!
+  siteconfig(id: Int!): SiteConfigResponseSingle!
+  siteconfigs: SiteConfigResponse!
+  findConfigOnly: SiteConfigResponseSingle!
+  commisionData: CommissionFeesResponseSingle!
+  FindOneUserById(id: Int!): UserEntity!
+  findUserPropetry(name: String!, page: Int!, pagesize: Int!, PropertyStatus: String!): MangeUserPropertyResponse!
+  propertyVerification(property_id: Int!): PropertyVerificationResponse!
+  sendOTP(property_id: Int!): PropertyVerificationResponse!
+  duplicatePropertyList: [PropertyEntity!]!
+  StepWisePropertyData(property_id: Int!, property_step: Int!): [StepWisePropertyData!]!
+  userSearchAndFilterProperty(searchAndFilterParam: SearchAndFilterPropertyInput!): PropertyFilterResponse
+  favoritePropertyList(page_number: Int!, page_size: Int!): PropertyPaginationResponse!
+  searchPropertyByParam(property_name: String!, page_number: Int!, page_size: Int!, property_type: String!): PropertyPaginationResponse!
+  userFeaturePropertyList: [PropertyEntity!]!
+  findOneProperty(property_id: Int!): PropertyEntity
+  amenitiesListing: AmenitiesListingResponse
+  featurePropertyList: [PropertyEntity!]!
+  publicSearchAndFilterProperty(searchAndFilterParam: SearchAndFilterPropertyInput!): PropertyFilterResponse
+  continueChatting(id: Int!): ContinueChatting!
+  dataVerification(id: Int!): UserDocumentsVerifyResponse!
+  inbox(status: Int!): MessageResponse!
+  getPerticularChat(messageListingInput: MessageListingDto!): ChildMessageResponse!
+  amountData(booking_id: Int!): String!
+  firstMonthRent(property_id: Int!): PropertyEntity!
+  tenantHistory(tenant_name: String!, page_number: Int!, page_size: Int!, status: String!, tenantPropertyId: MessageListingDto!): BookingPaginationResponse!
+  tenantView(tenantInput: MessageListingDto!): TenantResponse!
+  apartmentDetails(property_id: MessageSendDto!): PropertyEntity!
+  GetPayoutConfirmationStatus: Int!
+  adminDashboard(Year: Int!): AdminDashboardData!
+  countryList: [CountryList!]
+  stateList(country_id: Int!): [StateList!]
+  cityList(state_id: Int!): [CityList!]
+  FindAllCMSResponse: FindAllCMSResponse!
+  FindOneCms(identifier: String): [CmsEntity!]
+  language_list: [SpokenLanguagesEntity!]!
+  allReservation(name: String!, page: Int!, pagesize: Int!, propertyType: String!, status: Int): MangeReservation!
+  reservation(id: Int!): Reservation!
+}
+
+union StepWisePropertyData = PropertyEntity | SpaceOverviewEntity | PropertyAmenityEntity | RentalConditionEntity | RuleOrPreferenceEntity | MediaEntity
+
+input SearchAndFilterPropertyInput {
+  min_price: Float
+  max_price: Float
+
+  """0 -> both 1 -> furnished 2 -> unfurnished"""
+  is_furnished: Int
+  size: [Int!]
+  page_number: Int
+  page_size: Int
+  start_date: String
+  end_date: String
+  locations: [String!]
+  type: [String!]
+  facilities: [String!]
+  suitable: [String!]
+  bills_includes: Boolean
+  sort_by: Int!
+}
+
+input MessageListingDto {
+  booking_id: Int!
+  to_id: Int!
+  from_id: Int!
+}
+
+input MessageSendDto {
+  id: Int
+  landlord_id: Int
+  property_id: Int
+  start_date: String
+  end_date: String
+  amount: Int
+  message: String
+  currency: String
+  status: Int
+  to_id: Int
+  from_id: Int
+}
+
+type Mutation {
+  login(userInput: LoginUserArgs!): UserLoginResponse!
+  forgetPassword(email: String!): String!
+  resetPassword(inputArgs: ResetPasswordArgs!): String!
+  forgetPasswordUser(email: String!): String!
+  resetPasswordUser(inputArgs: ResetPasswordArgs!): String!
+  LogInGoogle(input: LogInArgs!): GoogleOauthLoginResponse!
+  LogOut: String!
+  createAdmin(createAdminInput: CreateAdminInput!): String!
+  updateAdmin(updateAdminInput: UpdateAdminInput!): String!
+  deleteAdmin(adminUsersId: Int!): String!
+  deleteUser(UsersId: Int!): String!
+  createContactUs(createContactUsInput: CreateContactUsInput!): String!
+  createSiteconfig(createSiteconfigInput: CreateSiteconfigInput!, upload_logo: Upload): SiteConfigResponse!
+  updateSiteconfig(updateSiteconfigInput: UpdateSiteconfigInput!, upload_logo: Upload): SiteConfigResponse!
+  removeSiteconfig(id: Int!): SiteConfigResponse!
+  createOrUpdatePolicy(policy: Upload!, name: PolicyTypeEnum!): String!
+  updateCommisionOnly(updateCommissionOnly: UpdateCommissionOnly!): CommissionFeesResponseSingle!
+  updateUserType(updateUser: UpdateUserType!): String!
+  updateUserProfileOnly(UpdateUserProfileOnly: UpdateUserProfileOnly!, image: Upload): String!
+  deleteUserUser(user_id: Int!): String!
+  supportingDocument(supportingDocument: SupportingDocument!, identity_proof: Upload, proof_of_occupation_income: Upload): String!
+  changeUserPassword(ChangeUserPassword: ChangePasswordArgs!): String!
+  notificationSetting(NotificationSetting: UserNotificationSettings!): String!
+  userContactInformation(UserContactInformation: UserContactInformation!): String!
+  deletePropertyUser(property_id: Int!): String!
+  createUser(createUserInput: CreateUserInput!, image: Upload): UserRegisterResponse!
+  createPropertyStep2(createPropertyInput: CreatePropertyStep2Input!): CreatePropertyResponse!
+  createPropertyStep3(createPropertyInput: CreatePropertyStep3Input!): CreatePropertyResponse!
+  createPropertyStep4(createPropertyInput: CreatePropertyStep4Input!): CreatePropertyResponse!
+  createPropertyStep5(createPropertyInput: CreatePropertyStep5Input!): CreatePropertyResponse!
+  createPropertyStep6(createPropertyInput: CreatePropertyStep6Input!): CreatePropertyResponse!
+  createPropertyStep7(property_id: Int!, images: [Upload!], videos: Upload, youtube_url: String): CreatePropertyResponse!
+  insertPhoneNo(dialerCode: String!, mobileNumber: String!): PropertyVerificationResponse!
+  verifyOTP(verifyOTPInput: VerifyOTPInput!): String!
+  duplicateProperty(property_id: Int!): CreatePropertyResponse!
+  editPropertyStep2(updatePropertyStep2Input: UpdatePropertyStep2Input!): CreatePropertyResponse!
+  editPropertyStep3(updatePropertyStep3Input: UpdatePropertyStep3Input!): CreatePropertyResponse!
+  editPropertyStep4(updatePropertyStep4Input: UpdatePropertyStep4Input!): CreatePropertyResponse!
+  editPropertyStep5(updatePropertyStep5Input: UpdatePropertyStep5Input!): CreatePropertyResponse!
+  editPropertyStep6(updatePropertyStep6Input: UpdatePropertyStep6Input!): CreatePropertyResponse!
+  removePropertyStep7(id: [Int!]!): String!
+  favoriteProperty(favorite: FavoritePropertyInput!): String!
+  deleteProperty(property_id: Int!): String!
+  messageWithInfoInput(UpdateUserForBooking: UpdateUserBookingDto!, messageWithInfo: MessageSendDto!, proofOfIdentity: Upload, occupation: Upload): BookingResponses!
+  sendMessage(fromId: Int!, toId: Int!, bookingId: Int!, message: String!, status: Float!, messageFile: Upload): MessagePayload!
+  messageInput(messageInput: MessageSendDto!, messageFile: Upload): String!
+  dateRangeUpdate(dateChange: MessageSendDto!): String!
+  changeStatus(statusChange: MessageSendDto!): String!
+  requestBooking(transactionFinalize: RequestBookingDto!): String!
+  UpdatePayoutStatus(status: Boolean!, booking_id: Float!): String!
+  createCmsPage(CreateCmsPageInput: CreateCmsPageInput!): CMSCreatedResponse!
+  uploadForCmsPage(file: Upload): String!
+  UpdateCmsPage(updateCms: UpdateCmsPageInput!): String!
+  removeCmsPage(id: Int!): String!
+  createLanguage(createLanguageInput: CreatelanguageInput!): LanguageCreatedResponse!
+  removeLanguage(id: Int!): String!
+}
+
+union UserLoginResponse = AdminEntity | UserEntity
+
+input LoginUserArgs {
+  email: String!
+  password: String!
+  user_type: Int!
+}
+
+input ResetPasswordArgs {
+  reset_password_token: String!
+  password: String!
+  confirmPassword: String!
+}
+
+input LogInArgs {
+  code: String!
+}
+
+input CreateAdminInput {
+  email: String!
+  user_name: String!
+  password: String!
+  role: Int!
+}
+
+input UpdateAdminInput {
+  role: Int!
+  id: Int!
+  email: String!
+  status: Int!
+}
+
+input CreateContactUsInput {
+  name: String!
+  email: String!
+  mobile: String!
+  message: String!
+}
+
+input CreateSiteconfigInput {
+  """Site name"""
+  name: String!
+
+  """Site address"""
+  address: String!
+
+  """Site contact"""
+  contact: Int!
+
+  """Config status"""
+  status: Int!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+input UpdateSiteconfigInput {
+  """Site name"""
+  name: String
+
+  """Site address"""
+  address: String
+
+  """Site contact"""
+  contact: Int
+
+  """Config status"""
+  status: Int
+  id: Int!
+}
+
+enum PolicyTypeEnum {
+  FLEXIBLE
+  STANDARD
+}
+
+input UpdateCommissionOnly {
+  """value of commision"""
+  value: Float!
+  commission_from: Int!
+}
+
+input UpdateUserType {
+  id: Float!
+  is_landlord: Boolean!
+}
+
+input UpdateUserProfileOnly {
+  id: Int!
+  image: String
+  first_name: String
+  last_name: String
+  address: String
+  gender: Float
+  dob: String
+  occupation: String
+  country_id: Int
+}
+
+input SupportingDocument {
+  id: Int!
+  identity_proof: String
+  proof_of_occupation_income: String
+}
+
+input ChangePasswordArgs {
+  id: Float!
+  token: String!
+  password: String!
+  confirmPassword: String!
+}
+
+input UserNotificationSettings {
+  id: Int!
+  notification_is_enable: Float
+  notification_language: Int!
+}
+
+input UserContactInformation {
+  id: Int!
+  email: String
+  dialer_code: Int
+  mobile: Float
+}
+
+input CreateUserInput {
+  image: String
+  first_name: String!
+  last_name: String!
+  address: String
+  country_id: Float
+  gender: Float
+  dob: String
+  occupation: String
+  identity_proof: String
+  proof_of_occupation_income: String
+  email: String!
+  password: String!
+  is_mobile_verified: Float
+  is_email_verified: Float
+  social_type: Float
+  notification_is_enable: Float
+  notification_language: Float
+  is_landlord: Float
+}
+
+input CreatePropertyStep2Input {
+  type: String!
+  name: String!
+  latitude: Float
+  longitude: Float
+  currency: String!
+  house_no: String!
+  rent: Float!
+  id: Int
+  postal_code: String!
+  country_id: Int!
+  state_id: Int!
+  city_id: Int!
+  min_rental_period: Float!
+  max_rental_period: Float!
+  available_from: DateTime!
+}
+
+input CreatePropertyStep3Input {
+  bedrooms: Int!
+  peoples: Int!
+  size: Int!
+  property_id: Int!
+  details: String!
+  is_furnished: Int!
+}
+
+input CreatePropertyStep4Input {
+  step4inputList: [CreatePropertyStep4InputType!]!
+  property_id: Int!
+}
+
+input CreatePropertyStep4InputType {
+  amenities_id: Int!
+  availability: Int!
+}
+
+input CreatePropertyStep5Input {
+  contract_type: Int!
+  property_id: Int!
+  cancellation_policy_id: Int!
+  additional_required_cost: [AdditionalRequiredCostInput]
+}
+
+input AdditionalRequiredCostInput {
+  name: String
+  amount: Float
+}
+
+input CreatePropertyStep6Input {
+  document: Int!
+  gender: Int!
+  tenant: Int!
+  pets: Int!
+  property_id: Int!
+}
+
+input VerifyOTPInput {
+  mobileNumber: String!
+  otp: String!
+  property_id: Int!
+}
+
+input UpdatePropertyStep2Input {
+  type: String
+  name: String
+  latitude: Float
+  longitude: Float
+  currency: String
+  house_no: String
+  rent: Float
+  id: Int
+  postal_code: String
+  country_id: Int
+  state_id: Int
+  city_id: Int
+  min_rental_period: Float
+  max_rental_period: Float
+  available_from: DateTime
+  property_id: Int!
+}
+
+input UpdatePropertyStep3Input {
+  bedrooms: Int
+  peoples: Int
+  size: Int
+  property_id: Int
+  details: String
+  is_furnished: Int
+  id: Int!
+}
+
+input UpdatePropertyStep4Input {
+  step4inputList: [UpdatePropertyStep4InputType!]!
+  property_id: Int!
+}
+
+input UpdatePropertyStep4InputType {
+  id: Int!
+  amenities_id: Int!
+  availability: Int!
+}
+
+input UpdatePropertyStep5Input {
+  contract_type: Int
+  property_id: Int
+  cancellation_policy_id: Int
+  additional_required_cost: [UpdateAdditionalRequiredCostInput]
+  id: Int!
+}
+
+input UpdateAdditionalRequiredCostInput {
+  id: Int!
+  name: String
+  amount: Float
+}
+
+input UpdatePropertyStep6Input {
+  document: Int
+  gender: Int
+  tenant: Int
+  pets: Int
+  property_id: Int
+  id: Int!
+}
+
+input FavoritePropertyInput {
+  is_favorite: Int!
+  property_id: Int!
+}
+
+input UpdateUserBookingDto {
+  image: String
+  gender: Int
+  dob: String
+  occupation: String
+  dialer_code: Int
+  mobile: Float
+}
+
+input RequestBookingDto {
+  id: Int
+  name: String!
+  number: String!
+  exp_month: String!
+  exp_year: String!
+  cvc: String!
+  amount: String!
+  first_name: String!
+  last_name: String!
+  address: String!
+  postal: String!
+  city: String!
+  state: String!
+  country: String!
+  property_id: Int!
+  landlord_id: Int!
+  start_date: String!
+  end_date: String!
+  city_of_residence: String
+}
+
+input CreateCmsPageInput {
+  data: [CreateCmsPageItem!]!
+}
+
+input CreateCmsPageItem {
+  content: String!
+  language_id: Float!
+  meta_description: String!
+  meta_title: String!
+  page_name: String!
+}
+
+input UpdateCmsPageInput {
+  data: [UpdateCmsPageItem!]!
+}
+
+input UpdateCmsPageItem {
+  id: Float!
+  content: String!
+  language_id: Float!
+  meta_description: String!
+  meta_title: String!
+  page_name: String!
+}
+
+input CreatelanguageInput {
+  name: String!
+  language_code: String!
+}
+
+type Subscription {
+  newMessage(fromId: Int!, toId: Int!, bookingId: Int!): LiveChatResponse!
+}
