@@ -40,7 +40,7 @@ Are you looking for a house on rent? You have landed on one of the most smart pl
 ```
 git clone https://github.com/Creolestudios/rent-a-house-nextjs-nestjs.git
 
-cd 
+cd rent-a-house-nextjs-nestjs
 ```
 ### Install Dependencies (frontend & backend)
 ```
@@ -51,7 +51,7 @@ yarn
 ```
 cd backend
 
-yarn 
+npm 
 ```
 ### Run
 ```
